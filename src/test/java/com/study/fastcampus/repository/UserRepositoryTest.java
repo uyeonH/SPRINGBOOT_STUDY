@@ -1,6 +1,7 @@
 package com.study.fastcampus.repository;
 
 import com.study.fastcampus.MainApplicationTests;
+import com.study.fastcampus.model.entity.Item;
 import com.study.fastcampus.model.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +31,19 @@ public class UserRepositoryTest extends MainApplicationTests {
     }
 
     @Test
+    @Transactional
     public void read() {
 
         //Optional 제네릭?
-        Optional<User> user = userRepository.findById(2L); //Long Type, id가 2인 user
+        Optional<User> user = userRepository.findById(4L); //Long Type, id가 2인 user
 
-        //있을 때 출력하기
         user.ifPresent(selectUser -> {
-            System.out.println("user: " + selectUser);
-            System.out.println("email: " + selectUser.getEmail());
+            selectUser.getOrderDetailList().stream().forEach(detail -> {
+                Item item=detail.getItem();
+                System.out.println("item: "+item);
+
+            });
+
         });
 
     }

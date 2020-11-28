@@ -2,9 +2,11 @@ package com.study.fastcampus.repository;
 
 import com.study.fastcampus.MainApplicationTests;
 import com.study.fastcampus.model.entity.Item;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
+
+import java.util.Optional;
 
 class ItemRepositoryTest extends MainApplicationTests {
 
@@ -12,16 +14,29 @@ class ItemRepositoryTest extends MainApplicationTests {
     private ItemRepository itemRepository;
 
     @Test
-    public void create(){
-        Item item=new Item();
+    public void create() {
+        Item item = new Item();
         item.setName("노트북");
         item.setPrice(100000);
         item.setContent("삼성 노트북");
 
-        Item newItem=itemRepository.save(item);
+        Item newItem = itemRepository.save(item);
         Assert.assertNotNull(newItem);
     }
 
+    @Test
+    public void read(){
+        Long id=1L;
+        Optional<Item> item=itemRepository.findById(id);
+        item.ifPresent(i->{
+            System.out.println(i);
+        });
 
+        Assert.assertTrue(item.isPresent());
+
+
+
+
+    }
 
 }
