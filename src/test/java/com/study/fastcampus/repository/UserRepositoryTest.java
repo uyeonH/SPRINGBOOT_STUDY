@@ -1,16 +1,14 @@
 package com.study.fastcampus.repository;
 
 import com.study.fastcampus.MainApplicationTests;
-import com.study.fastcampus.MainApplication;
-import com.study.fastcampus.MainApplicationTests;
 import com.study.fastcampus.model.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
+//import static org.junit.Assert.*;
 
 public class UserRepositoryTest extends MainApplicationTests {
     //Dependency Injection (DI)
@@ -58,18 +56,16 @@ public class UserRepositoryTest extends MainApplicationTests {
     }
 
     @Test
+    @Transactional // 데이터베이스에서 동작이 일어나지 않음, 롤백?
     public void delete() {
         Optional<User> user = userRepository.findById(2L); //Long Type, id가 2인 user
+
+        //Assert.assertTrue(user.isPresent());
         user.ifPresent(selectUser -> {
             userRepository.delete(selectUser);
         });
 
         Optional<User> deleteUser = userRepository.findById(2L);
-        if (deleteUser.isPresent()) {
-            System.out.println("데이터 존재: " + deleteUser.get());
-        } else {
-            System.out.println("데이터 삭제 데이터 없음");
-
-        }
+        //Assert.assertFalse(deleteUser.isPresent());
     }
 }
