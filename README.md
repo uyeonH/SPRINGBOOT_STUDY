@@ -4,3 +4,4 @@
 
 ### ER Diagram
 
+![ER Diagram](./image/DIAGRAM.png)
