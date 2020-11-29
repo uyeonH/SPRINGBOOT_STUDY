@@ -1,7 +1,6 @@
 package com.study.fastcampus.repository;
 
 import com.study.fastcampus.MainApplicationTests;
-import com.study.fastcampus.model.entity.Item;
 import com.study.fastcampus.model.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,36 +17,14 @@ public class UserRepositoryTest extends MainApplicationTests {
 
     @Test
     public void create() {
-        //spring aql = insert into user(%s, %s,%d) value (account, email, age)
-        User user = new User();
-        user.setEmail("TestUser03@gmail.com");
-        user.setPhoneNumber("010-1234-5678");
-        user.setAccount("TestUser03");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("admin");
 
-        User numUser = userRepository.save(user);
-        System.out.println(numUser);
     }
 
     @Test
     @Transactional
     public void read() {
 
-        //Optional 제네릭?
-        // select * from user where id = ?
-        Optional<User> user = userRepository.findByAccount("TestUser05");
-        // findById -> Long Type, id가 2인 user
-        // Account
-        user.ifPresent(selectUser -> {
 
-            selectUser.getOrderDetailList().stream().forEach(detail -> {
-                Item item=detail.getItem();
-                System.out.println("item: "+item);
-
-            });
-
-        });
 
     }
 
