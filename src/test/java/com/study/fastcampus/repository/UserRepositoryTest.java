@@ -2,6 +2,7 @@ package com.study.fastcampus.repository;
 
 import com.study.fastcampus.MainApplicationTests;
 import com.study.fastcampus.model.entity.User;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,14 +19,41 @@ public class UserRepositoryTest extends MainApplicationTests {
     @Test
     public void create() {
 
+        String account = "Test01";
+        String password = "Test01";
+        String status = "REGISTERED";
+        String email = "Test01@gmail.com";
+        String phoneNumber = "010-1111-2222";
+        LocalDateTime registeredAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer";
+
+        // Sample User 생성
+        User user = new User();
+
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedAt(createdAt);
+        user.setCreatedBy(createdBy);
+
+
+        User newUser = userRepository.save(user);
+
+        Assert.assertNotNull(newUser);
+
     }
 
     @Test
     @Transactional
     public void read() {
 
-
-
+        // 폰 번호로 유저 찾기
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        Assert.assertNotNull(user);
     }
 
     @Test

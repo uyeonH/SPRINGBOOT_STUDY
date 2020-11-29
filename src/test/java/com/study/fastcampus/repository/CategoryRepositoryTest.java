@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -17,7 +16,6 @@ public class CategoryRepositoryTest extends MainApplicationTests {
     private CategoryRepository categoryRepository;
 
     @Test
-    @Transactional
     public void create() {
         String type = "COMPUTER";
         String title = "컴퓨터";
@@ -31,17 +29,27 @@ public class CategoryRepositoryTest extends MainApplicationTests {
         category.setCreatedAt(createdAt);
         category.setCreatedBy(createdBy);
 
-        Category newCategory=categoryRepository.save(category);
+        Category newCategory = categoryRepository.save(category);
+
         Assert.assertNotNull(newCategory);
-        Assert.assertEquals(newCategory.getType(),type);
-        Assert.assertEquals(newCategory.getTitle(),title);
+        Assert.assertEquals(newCategory.getType(), type);
+        Assert.assertEquals(newCategory.getTitle(), title);
 
     }
 
     @Test
     public void read() {
-        Optional<Category> optionalCategory=categoryRepository.findById(1L);
-        optionalCategory.ifPresent(c->{
+        String type = "COMPUTER";
+        Optional<Category> optionalCategory = categoryRepository.findByType(type);
+
+        // select * from category where type = 'COMPUTER';
+
+        optionalCategory.ifPresent(c -> {
+
+            Assert.assertEquals(c.getType(),type);
+
+            System.out.println("=============");
+
             System.out.println(c.getId());
             System.out.println(c.getType());
             System.out.println(c.getTitle());

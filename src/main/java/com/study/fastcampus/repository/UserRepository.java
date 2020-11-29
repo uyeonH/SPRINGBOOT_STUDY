@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> { // Long 식별자 타입
 
-
+    // 가장 최근 것
+    User findFirstByPhoneNumberOrderByIdDesc(String phoneNumber);
 
 }
