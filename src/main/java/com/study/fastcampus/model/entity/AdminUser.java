@@ -1,19 +1,20 @@
 package com.study.fastcampus.model.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @NoArgsConstructor
-@Data
 @AllArgsConstructor
-@Entity // ==table
-public class User {
+@Data
+@Entity
+public class AdminUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +26,19 @@ public class User {
 
     private String status;
 
-    private String email;
+    private String role;
 
-    private String phoneNumber;
+    private LocalDateTime lastLoginAt;
+
+    private LocalDateTime passwordUpdatedAt;
+
+    private int loginFailCount;
 
     private LocalDateTime registeredAt;
 
     private LocalDateTime unregisteredAt;
 
-    private LocalDateTime createdAt;
+    private  LocalDateTime createdAt;
 
     private String createdBy;
 
@@ -41,7 +46,5 @@ public class User {
 
     private String updatedBy;
 
-    // 1 : N
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
-    private List<OrderDetail> orderDetailList;
+
 }

@@ -20,9 +20,9 @@ public class UserRepositoryTest extends MainApplicationTests {
     public void create() {
         //spring aql = insert into user(%s, %s,%d) value (account, email, age)
         User user = new User();
-        user.setEmail("TestUser02@gmail.com");
+        user.setEmail("TestUser03@gmail.com");
         user.setPhoneNumber("010-1234-5678");
-        user.setAccount("TestUser02");
+        user.setAccount("TestUser03");
         user.setCreatedAt(LocalDateTime.now());
         user.setCreatedBy("admin");
 
@@ -35,9 +35,12 @@ public class UserRepositoryTest extends MainApplicationTests {
     public void read() {
 
         //Optional 제네릭?
-        Optional<User> user = userRepository.findById(4L); //Long Type, id가 2인 user
-
+        // select * from user where id = ?
+        Optional<User> user = userRepository.findByAccount("TestUser05");
+        // findById -> Long Type, id가 2인 user
+        // Account
         user.ifPresent(selectUser -> {
+
             selectUser.getOrderDetailList().stream().forEach(detail -> {
                 Item item=detail.getItem();
                 System.out.println("item: "+item);

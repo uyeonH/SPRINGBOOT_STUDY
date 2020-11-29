@@ -17,8 +17,8 @@ class ItemRepositoryTest extends MainApplicationTests {
     public void create() {
         Item item = new Item();
         item.setName("노트북");
-        item.setPrice(100000);
-        item.setContent("삼성 노트북");
+        item.setPrice(90000);
+        item.setContent("HP 노트북");
 
         Item newItem = itemRepository.save(item);
         Assert.assertNotNull(newItem);
@@ -28,9 +28,10 @@ class ItemRepositoryTest extends MainApplicationTests {
     public void read(){
         Long id=1L;
         Optional<Item> item=itemRepository.findById(id);
-        item.ifPresent(i->{
-            System.out.println(i);
-        });
+
+//        item.ifPresent(i->{
+//            System.out.println(i);
+//        });
 
         Assert.assertTrue(item.isPresent());
 
