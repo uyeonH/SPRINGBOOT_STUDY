@@ -23,7 +23,7 @@ public class OrderDetail {
 
     private String status;
 
-    private LocalDateTime orderAt;
+    //private LocalDateTime orderAt;
 
     private LocalDateTime arrivalDate;
 
@@ -39,4 +39,7 @@ public class OrderDetail {
 
     private String updatedBy;
 
+    private Long itemId;
+
+    private Long orderGroupId;
 }
