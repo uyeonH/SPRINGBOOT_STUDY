@@ -41,6 +41,8 @@ public class UserRepositoryTest extends MainApplicationTests {
         user.setCreatedBy(createdBy);
 
 
+        //System.out.println(userRepository);
+
         User newUser = userRepository.save(user);
 
         Assert.assertNotNull(newUser);
