@@ -11,8 +11,6 @@ import org.springframework.util.Assert;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 public class OrderGroupRepositoryTest extends MainApplicationTests {
 
@@ -34,7 +32,7 @@ public class OrderGroupRepositoryTest extends MainApplicationTests {
         orderGroup.setArrivalDate(LocalDateTime.now());
         orderGroup.setCreatedAt(LocalDateTime.now());
         orderGroup.setCreatedBy("AdminServer");
-        orderGroup.setUserId(1L);
+        //orderGroup.setUserId(1L); // ->객체로 바꿈 User
 
         OrderGroup newOrderGroup=orderGroupRepository.save(orderGroup);
         Assert.notNull(newOrderGroup);

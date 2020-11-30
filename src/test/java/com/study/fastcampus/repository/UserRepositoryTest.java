@@ -55,7 +55,23 @@ public class UserRepositoryTest extends MainApplicationTests {
 
         // 폰 번호로 유저 찾기
         User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        user.getOrderGroupList().stream().forEach(orderGroup -> {
+            System.out.println("======== 주문 묶음 ========");
+            System.out.println("수령인: " + orderGroup.getRevName());
+            System.out.println("수령자: " + orderGroup.getRevAddress());
+            System.out.println("총금액: " + orderGroup.getTotalPrice());
+            System.out.println("총수량: " + orderGroup.getTotalQuantity());
+            System.out.println("======== 주문 상세 ========");
+            orderGroup.getOrderDetailList().forEach(orderDetail -> {
+                System.out.println("주문의 상태: " + orderDetail.getStatus());
+                System.out.println("도착 예정 일자: " + orderDetail.getArrivalDate());
+
+            });
+
+        });
         Assert.assertNotNull(user);
+
+
     }
 
     @Test

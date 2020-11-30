@@ -29,8 +29,10 @@ public class AdminUserRepositoryTest extends MainApplicationTests {
         adminUser.setCreatedBy("AdminServer");
 
         AdminUser newAdminUser=adminUserRepository.save(adminUser);
-
         Assert.assertNotNull(adminUser);
+
+
+
 
     }
 }
