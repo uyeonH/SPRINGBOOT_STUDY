@@ -29,11 +29,12 @@ public class UserRepositoryTest extends MainApplicationTests {
         String createdBy = "AdminServer";
 
 
-        User u = User.builder()
+        User user = User.builder()
                 .account(account)
                 .password(password)
                 .status(status)
                 .email(email)
+                .phoneNumber(phoneNumber)
                 .build();
 
         //System.out.println(userRepository);
