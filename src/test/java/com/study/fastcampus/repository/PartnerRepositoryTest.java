@@ -10,8 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 public class PartnerRepositoryTest extends MainApplicationTests {
 
@@ -45,7 +43,7 @@ public class PartnerRepositoryTest extends MainApplicationTests {
         partner.setRegisteredAt(registeredAt);
         partner.setCreatedAt(createdAt);
         partner.setCreatedBy(createdBy);
-        partner.setCategoryId(categoryId);
+        //partner.setCategoryId(categoryId);
 
         Partner newPartner = partnerRepository.save(partner);
         Assert.assertNotNull(newPartner);

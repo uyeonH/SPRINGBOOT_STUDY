@@ -1,9 +1,12 @@
 package com.study.fastcampus.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.Accessors;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,7 +16,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@ToString(exclude={"orderGroup"})
+@ToString(exclude={"orderGroup","item"})
+@EntityListeners(AuditingEntityListener.class)
+@Builder
+@Accessors(chain = true)
 public class OrderDetail {
 
     @Id
@@ -30,15 +36,22 @@ public class OrderDetail {
 
     private BigDecimal totalPrice;
 
+    @CreatedDate
     private  LocalDateTime createdAt;
 
+    @CreatedBy
     private String createdBy;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @LastModifiedBy
     private String updatedBy;
 
-    private Long itemId;
+
+    // OrderDetail N : 1 Item
+    @ManyToOne
+    private Item item;
 
     @ManyToOne
     private OrderGroup orderGroup;
