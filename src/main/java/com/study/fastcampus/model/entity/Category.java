@@ -28,6 +28,8 @@ public class Category {
 
     private String title;
 
+    //private Long categoryId;
+
     @CreatedDate
     private  LocalDateTime createdAt;
 

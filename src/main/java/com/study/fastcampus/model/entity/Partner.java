@@ -44,6 +44,8 @@ public class Partner {
 
     private LocalDateTime unregisteredAt;
 
+    //private Long categoryId;
+
     @CreatedDate
     private  LocalDateTime createdAt;
 
@@ -63,5 +65,6 @@ public class Partner {
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "partner")
     private List<Item> itemList;
+
 
 }

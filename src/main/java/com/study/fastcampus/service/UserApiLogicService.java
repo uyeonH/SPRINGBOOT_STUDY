@@ -1,12 +1,15 @@
 package com.study.fastcampus.service;
 
 import com.study.fastcampus.ifs.CrudInterface;
+import com.study.fastcampus.model.entity.User;
 import com.study.fastcampus.model.network.Header;
 import com.study.fastcampus.model.network.request.UserApiRequest;
 import com.study.fastcampus.model.network.response.UserApiResponse;
 import com.study.fastcampus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class UserApiLogicService implements CrudInterface<UserApiRequest, UserApiResponse> {
@@ -20,8 +23,25 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     // 3. 생성된 데이터 -> UserApiResponse return
     @Override
     public Header<UserApiResponse> create(Header<UserApiRequest> request) {
-        UserApiRequest userApiRequest = request.getData()
-        return null;
+
+        // 1. request data
+        UserApiRequest userApiRequest = request.getData();
+
+        // 2. User 생성
+        User user = User.builder()
+                .account(userApiRequest.getAccount())
+                .password(userApiRequest.getPassword())
+                .status("REGISTERED")
+                .phoneNumber(userApiRequest.getPhoneNumber())
+                .email(userApiRequest.getEmail())
+                .registeredAt(LocalDateTime.now())
+                .build();
+
+        User newUser=userRepository.save(user);
+
+        // 3. 생성된 데이터 -> userApiResponse return
+
+        return response(newUser);
     }
 
     @Override
@@ -37,5 +57,13 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     @Override
     public Header delete(Long id) {
         return null;
+    }
+
+    private Header<UserApiResponse> response(User user) {
+
+
+        return null;
+
+
     }
 }

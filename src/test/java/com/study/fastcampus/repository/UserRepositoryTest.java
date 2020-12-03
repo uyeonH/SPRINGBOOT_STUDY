@@ -22,7 +22,7 @@ public class UserRepositoryTest extends MainApplicationTests {
         String account = "Test03";
         String password = "Test03";
         String status = "REGISTERED";
-        String email = "Test01@gmail.com";
+        String email = "Test03@gmail.com";
         String phoneNumber = "010-1111-3333";
         LocalDateTime registeredAt = LocalDateTime.now();
         LocalDateTime createdAt = LocalDateTime.now();

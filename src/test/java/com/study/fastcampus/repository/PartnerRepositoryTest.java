@@ -19,17 +19,17 @@ public class PartnerRepositoryTest extends MainApplicationTests {
     @Test
     public void create() {
 
-        String name = "Partner01";
+        String name = "Partner02";
         String status = "REGISTERED";
         String address = "서울시 강남구";
-        String callCenter = "070-1111-2222";
-        String partnerNumber = "010-1111-2222";
+        String callCenter = "070-1111-3333";
+        String partnerNumber = "010-1111-3333";
         String businessNumber = "1234567890123";
         String ceoName = "홍길동";
         LocalDateTime registeredAt = LocalDateTime.now();
         LocalDateTime createdAt = LocalDateTime.now();
         String createdBy = "AdminServer";
-        Long categoryId = 1L;
+        Long categoryId = 2L;
 
         Partner partner = new Partner();
 
